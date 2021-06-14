@@ -1,0 +1,42 @@
+function telephoneCheck(str) {
+  if (str.length < 9) {
+    return false;
+  }
+  if ((str.indexOf(')') != -1 && str.indexOf('(') == -1) || (str.indexOf('(') != -1 && str.indexOf(')') == -1)) {
+    return false;
+  }
+  if (str.indexOf('*') != -1 || str.indexOf('&') != -1 || str.indexOf('!') != -1 || str.indexOf('#') != -1 || str.indexOf('?') != -1) {
+    return false;
+  }
+  if (str.indexOf('(') != -1 && str[str.indexOf('(')+4] != ')') {
+    return false;
+  }
+  let numCount = 0;
+  let nums = ['0','1','2','3','4','5','6','7','8','9'];
+  for (let i = 0; i < str.length; i++) {
+    if (nums.indexOf(str[i]) != -1) {
+      numCount++;
+    }
+  }
+  if (numCount > 10) {
+    if (str[0] != '1') {
+      return false;
+    }
+  }
+  if (numCount > 11) {
+    return false;
+  }
+  let hyphenCount = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '-') {
+      hyphenCount++;
+    }
+  }
+  if (hyphenCount > 2) {
+    return false;
+  }
+  console.log(numCount);
+  return true;
+}
+
+telephoneCheck("2 (757) 622-7382");
